@@ -22,4 +22,4 @@ def factorial(n):
     from functools import reduce
     return reduce(lambda x,y: x*y, range(1, n+1))
 
-print(factorial(10000))
+print(factorial(10))
