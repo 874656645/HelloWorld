@@ -6,11 +6,16 @@ def performance(unit):
         return wrapper
     return perf_decorator '''
 
-import time, functools
+import time
+from functools import reduce
+from functools import wraps
+# 直接导入functools的话，在使用其内部函数时需要添加functools的模块名
+# import functools
 
 def performance(unit):
     def perf_decorator(f):
-        @functools.wraps(f)
+        @wraps(f)
+        # @functools.wraps(f)
         def wrapper(*args, **kwargs):
             t1 = time.time()
             r = f(*args, **kwargs)
@@ -23,7 +28,8 @@ def performance(unit):
 
 @performance('ms')
 def func(n):
-    return functools.reduce(lambda x,y : x*y, range(1, n+1))
+    return reduce(lambda x,y : x*y, range(1, n+1))
+    # return functools.reduce(lambda x,y : x*y, range(1, n+1))
 
 print(func(20))
 print(func.__name__)
