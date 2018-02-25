@@ -14,9 +14,14 @@ print(Person.count)
 p2 = Person('Alx')
 print(Person.count)
 
-# 每次实例化实际上是把类属型进行了一次拷贝，所以如果修改一个实例的类属型不影响其他实例的类属型
+# 如果实例的属性名与类属性名相同，则会覆盖类属性名
 print(p1.address)
 print(p2.address)
 p1.address = 'Mars'
 print(p1.address)
 print(p2.address)
+# 删除实例的属性后，才能访问到类属性
+del p1.address
+print(p1.address)
+print(p2.address)
+
