@@ -69,6 +69,7 @@ if __name__ == '__main__':
     # print(zs.name)
     setattr(zs, 'name', 'ls')
     print(getattr(zs, 'name'))
+    print(dir(zs))
     # print(zs.name)
     # ls = Person('ls', 30)
     # print(zs)
