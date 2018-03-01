@@ -21,3 +21,5 @@ class Student(Person):
 s = Student('Bob', 'male', 90)
 
 print(s)
+
+print(dir(s))
