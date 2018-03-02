@@ -1,3 +1,5 @@
+# 在Python 3.x, 取消了 cmp 参数， 只保留了Key Function参数。
+
 class Student(object):
     
     def __init__(self, name, score):
