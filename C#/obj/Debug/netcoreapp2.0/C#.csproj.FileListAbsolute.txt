@@ -1,0 +1,11 @@
+d:\AppData\Documents\GitHub\HelloWorld\C#\bin\Debug\netcoreapp2.0\C#.deps.json
+d:\AppData\Documents\GitHub\HelloWorld\C#\bin\Debug\netcoreapp2.0\C#.runtimeconfig.json
+d:\AppData\Documents\GitHub\HelloWorld\C#\bin\Debug\netcoreapp2.0\C#.runtimeconfig.dev.json
+d:\AppData\Documents\GitHub\HelloWorld\C#\bin\Debug\netcoreapp2.0\C#.dll
+d:\AppData\Documents\GitHub\HelloWorld\C#\bin\Debug\netcoreapp2.0\C#.pdb
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.csprojAssemblyReference.cache
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.csproj.CoreCompileInputs.cache
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.AssemblyInfoInputs.cache
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.AssemblyInfo.cs
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.dll
+d:\AppData\Documents\GitHub\HelloWorld\C#\obj\Debug\netcoreapp2.0\C#.pdb

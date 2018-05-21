@@ -1,6 +1,10 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     },
-    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+
+    // "code-runner.runInTerminal": true,
+    "code-runner.ignoreSelection": true
 }
