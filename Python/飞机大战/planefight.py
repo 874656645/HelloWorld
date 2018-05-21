@@ -2,21 +2,31 @@ import sys
 
 import pygame
 
+from settings import Settings
+
+from plane import Plane
+
+import gamefunctions as gf
+
 def run_game():
     # 初始化游戏并创建一个屏幕对象
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
-    pygame.display.set_caption("PlaneFight")
+
+    # 初始化参数设置类实例
+    game_settings = Settings()
+
+    screen = pygame.display.set_mode((game_settings.screen_width, game_settings.screen_height))
+    pygame.display.set_caption(game_settings.game_name)
+
+    # 创建一艘飞船
+    plane = Plane(screen)
 
     #开始游戏主循环
     while True:
 
         # 监控键盘和鼠标事件
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        gf.check_events()
 
-        # 让最近绘制的屏幕可见
-        pygame.display.flip()
+        gf.update_screen(game_settings, screen, plane)
 
 run_game()
