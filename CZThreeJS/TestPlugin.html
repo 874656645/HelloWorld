@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery Plugin</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="PluginModel.js"></script>
+</head>
+
+<body>
+    <div id="LovePlugin"></div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        var a = new $.love("#LovePlugin", {
+            title: "Plugin",
+            width: 600,
+            height: 500
+        });　　
+        a.publicFunction(700, 600);
+        // $("#LovePlugin").css({
+        //     "color": "white",
+        //     "background-color": "#98bf21",
+        //     "width": "300px",
+        //     "height": "200px",
+        //     "padding": "5px"
+        // });
+    });
+</script>
+
+</html>
