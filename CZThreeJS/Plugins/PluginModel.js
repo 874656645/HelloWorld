@@ -4,10 +4,10 @@
     $.love = function(el, option) {
 
         var lo = $(el);
-        lo.vars = $.extend({}, $.love.default, option); //合并成新对象，则是新的属性列表
+        var vars = $.extend({}, $.love.default, option); //合并成新对象，则是新的属性列表
 
         //定义其他属性
-        var scene = null;       // 场景
+        var scene = null; // 场景
         var renderer = null;
         var camera = null;
 
@@ -21,13 +21,13 @@
                 scene = new THREE.Scene();
 
                 // create a camera, which defines where we're looking at.
-                camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera = new THREE.PerspectiveCamera(45, lo.width() / lo.height(), 0.1, 1000);
 
                 // create a render and set the size
                 renderer = new THREE.WebGLRenderer();
                 renderer.setClearColorHex();
                 renderer.setClearColor(new THREE.Color(0xEEEEEE));
-                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setSize(lo.innerWidth(), lo.innerHeight());
 
                 // show axes in the screen
                 var axes = new THREE.AxisHelper(20);
@@ -35,7 +35,7 @@
 
                 // create the ground plane
                 var planeGeometry = new THREE.PlaneGeometry(60, 20);
-                var planeMaterial = new THREE.MeshBasicMaterial({color: 0xcccccc});
+                var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
                 var plane = new THREE.Mesh(planeGeometry, planeMaterial);
 
                 // rotate and position the plane
@@ -43,32 +43,35 @@
                 plane.position.x = 15;
                 plane.position.y = 0;
                 plane.position.z = 0;
+                plane.name = "MyPlane";
 
                 // add the plane to the scene
                 scene.add(plane);
 
                 // create a cube
                 var cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-                var cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+                var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
                 var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
                 // position the cube
                 cube.position.x = -4;
                 cube.position.y = 3;
                 cube.position.z = 0;
+                cube.name = "MyCube";
 
                 // add the cube to the scene
                 scene.add(cube);
 
                 // create a sphere
                 var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
-                var sphereMaterial = new THREE.MeshBasicMaterial({color: 0x7777ff, wireframe: true});
+                var sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x7777ff, wireframe: true });
                 var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
                 // position the sphere
                 sphere.position.x = 20;
                 sphere.position.y = 4;
                 sphere.position.z = 2;
+                sphere.name = "MySphere";
 
                 // add the sphere to the scene
                 scene.add(sphere);
@@ -90,8 +93,8 @@
                 lo.css({
                     // "color": "white",
                     // "background-color": "#98bf21",
-                    "width": lo.vars.width,
-                    "height": lo.vars.height,
+                    "width": vars.width,
+                    "height": vars.height,
                     // "padding": "5px"
                 });
             }
@@ -99,32 +102,32 @@
 
         //公有方法（特权方法），供类外调用
         this.init = function() {
-            
+
             method.initStyle();
             method.initScene();
         };　
 
-        this.hide = function() {
+        this.hide = function(name) {
 
-            scene.children.forEach(function(e){
+            scene.children.forEach(function(e) {
 
-                if (e instanceof THREE.Mesh) {
+                if (e instanceof THREE.Mesh && e.name == name) {
 
                     e.visible = false;
                 }
-                
+
             });
 
             // render the scene
             renderer.render(scene, camera);
         };
 
-        this.show = function(){
+        this.show = function() {
 
-            scene.children.forEach(function(el){
+            scene.children.forEach(function(el) {
 
                 if (el instanceof THREE.Mesh) {
-                    
+
                     el.visible = true;
                 }
             });
