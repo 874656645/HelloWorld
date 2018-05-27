@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery Plugin</title>
+    <link rel="stylesheet" href="mainStyle.css">
+    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="PluginModel.js"></script>
+</head>
+
+<body>
+    <div id="WebGL-output"></div>
+    <button id = "btnHide">隐藏</button>
+    <button id = "btnShow">显示</button>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var a = new $.love("#WebGL-output", {
+            title: "Plugin",
+            width: "100%",
+            height: "500px"
+        });　　
+
+        a.init();
+
+        $("#btnHide").click(function () {
+            a.hide();
+        });
+
+        $("#btnShow").click(function(){
+            a.show();
+        });
+    });
+</script>
+
+</html>
