@@ -16,6 +16,11 @@
         var method = {};
         method = {
 
+            updateRenderer: function() {
+
+                renderer.render(scene, camera);               
+            },
+
             initScene: function() {
                 // create a scene, that will hold all our elements such as objects, cameras and lights.
                 scene = new THREE.Scene();
@@ -31,7 +36,7 @@
 
                 // show axes in the screen
                 var axes = new THREE.AxisHelper(20);
-                scene.add(axes);
+                // scene.add(axes);
 
                 // create the ground plane
                 var planeGeometry = new THREE.PlaneGeometry(60, 20);
@@ -60,7 +65,7 @@
                 cube.name = "MyCube";
 
                 // add the cube to the scene
-                scene.add(cube);
+                // scene.add(cube);
 
                 // create a sphere
                 var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
@@ -74,7 +79,7 @@
                 sphere.name = "MySphere";
 
                 // add the sphere to the scene
-                scene.add(sphere);
+                // scene.add(sphere);
 
                 // position and point the camera to the center of the scene
                 camera.position.x = -30;
@@ -86,7 +91,7 @@
                 lo.append(renderer.domElement);
 
                 // render the scene
-                renderer.render(scene, camera);
+                method.updateRenderer();
             },
 
             initStyle: function() {
@@ -98,6 +103,7 @@
                     // "padding": "5px"
                 });
             }
+
         };
 
         //公有方法（特权方法），供类外调用
@@ -119,7 +125,7 @@
             });
 
             // render the scene
-            renderer.render(scene, camera);
+            method.updateRenderer();
         };
 
         this.show = function() {
@@ -132,8 +138,32 @@
                 }
             });
 
-            renderer.render(scene, camera);
+            method.updateRenderer();
         };
+
+        this.loadOBJ = function (url) {
+
+            var loader = new THREE.OBJLoader();
+            loader.load(url, function (loadedMesh) {
+                
+                var material = new THREE.MeshLambertMaterial({color: 0x5C3A21});
+
+                // loadedMesh is a group of meshes. For
+                // each mesh set the material, and compute the information
+                // three.js needs for rendering.
+                loadedMesh.children.forEach(function (child) {
+                    child.material = material;
+                    child.geometry.computeFaceNormals();
+                    child.geometry.computeVertexNormals();
+                });
+
+                mesh = loadedMesh;
+                loadedMesh.scale.set(100, 100, 100);
+                loadedMesh.rotation.x = -0.3;
+                scene.add(loadedMesh);
+            });
+
+        }
     }
 
     //可设置默认属性
