@@ -18,7 +18,7 @@
 
             updateRenderer: function() {
 
-                renderer.render(scene, camera);               
+                renderer.render(scene, camera);
             },
 
             initScene: function() {
@@ -141,26 +141,28 @@
             method.updateRenderer();
         };
 
-        this.loadOBJ = function (url) {
+        this.loadOBJ = function(url) {
 
             var loader = new THREE.OBJLoader();
-            loader.load(url, function (loadedMesh) {
-                
-                var material = new THREE.MeshLambertMaterial({color: 0x5C3A21});
+            loader.load(url, function(loadedMesh) {
+
+                var material = new THREE.MeshLambertMaterial({ color: 0x5C3A21 });
 
                 // loadedMesh is a group of meshes. For
                 // each mesh set the material, and compute the information
                 // three.js needs for rendering.
-                loadedMesh.children.forEach(function (child) {
+                loadedMesh.children.forEach(function(child) {
                     child.material = material;
                     child.geometry.computeFaceNormals();
                     child.geometry.computeVertexNormals();
                 });
 
                 mesh = loadedMesh;
-                loadedMesh.scale.set(100, 100, 100);
+                // loadedMesh.scale.set(100, 100, 100);
                 loadedMesh.rotation.x = -0.3;
                 scene.add(loadedMesh);
+
+                method.updateRenderer();
             });
 
         }
