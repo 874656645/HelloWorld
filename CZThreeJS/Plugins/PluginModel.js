@@ -10,34 +10,36 @@
         var scene = null; // 场景
         var renderer = null;
         var camera = null;
-
+        var trackballControls = null;
+        var clock = null;
 
         //私有方法,私有方法之间可互相调用　
         var method = {};
         method = {
 
-            updateRenderer: function() {
+            render: function() {
 
+                var delta = clock.getDelta();
+
+                // if (mesh) {
+                //     //   mesh.rotation.y+=0.006;
+                // }
+
+
+                trackballControls.update(delta);
+                //webGLRenderer.clear();
+                // render using requestAnimationFrame
+                requestAnimationFrame(method.render);
                 renderer.render(scene, camera);
             },
 
-            initScene: function() {
-                // create a scene, that will hold all our elements such as objects, cameras and lights.
-                scene = new THREE.Scene();
-
-                // create a camera, which defines where we're looking at.
-                camera = new THREE.PerspectiveCamera(45, lo.width() / lo.height(), 0.1, 1000);
-
-                // create a render and set the size
-                renderer = new THREE.WebGLRenderer();
-                renderer.setClearColorHex();
-                renderer.setClearColor(new THREE.Color(0xEEEEEE));
-                renderer.setSize(lo.innerWidth(), lo.innerHeight());
-
+            addAxes: function () {
                 // show axes in the screen
                 var axes = new THREE.AxisHelper(20);
-                // scene.add(axes);
+                scene.add(axes);               
+            },
 
+            addPlane: function () {
                 // create the ground plane
                 var planeGeometry = new THREE.PlaneGeometry(60, 20);
                 var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
@@ -51,8 +53,10 @@
                 plane.name = "MyPlane";
 
                 // add the plane to the scene
-                scene.add(plane);
+                scene.add(plane);               
+            },
 
+            addCube: function () {
                 // create a cube
                 var cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
                 var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
@@ -65,8 +69,10 @@
                 cube.name = "MyCube";
 
                 // add the cube to the scene
-                // scene.add(cube);
+                scene.add(cube);               
+            },
 
+            addSphere: function () {
                 // create a sphere
                 var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
                 var sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x7777ff, wireframe: true });
@@ -79,19 +85,63 @@
                 sphere.name = "MySphere";
 
                 // add the sphere to the scene
-                // scene.add(sphere);
+                scene.add(sphere);
+                
+            },
+
+            initScene: function() {
+
+                clock = new THREE.Clock();
+
+                // create a scene, that will hold all our elements such as objects, cameras and lights.
+                scene = new THREE.Scene();
+
+                // create a camera, which defines where we're looking at.
+                camera = new THREE.PerspectiveCamera(45, lo.width() / lo.height(), 0.1, 1000);
+                // camera = new THREE.OrthographicCamera(lo.width() / -16, lo.height() / 16, lo.width() / 16, lo.height() / -16, -200, 500);
+
+                // create a render and set the size
+                renderer = new THREE.WebGLRenderer();
+                renderer.setClearColorHex();
+                renderer.setClearColor(new THREE.Color(0xEEEEEE));
+                renderer.setSize(lo.innerWidth(), lo.innerHeight());
+                renderer.shadowMapEnabled = true;
 
                 // position and point the camera to the center of the scene
-                camera.position.x = -30;
-                camera.position.y = 40;
-                camera.position.z = 30;
+                camera.position.x = 0;
+                camera.position.y = 0;
+                camera.position.z = -300;
                 camera.lookAt(scene.position);
+
+                // 轨迹球
+                trackballControls = new THREE.TrackballControls(camera);
+
+                trackballControls.rotateSpeed = 1.0;
+                trackballControls.zoomSpeed = 1.0;
+                trackballControls.panSpeed = 1.0;
+        //        trackballControls.noZoom=false;
+        //        trackballControls.noPan=false;
+                trackballControls.staticMoving = true;
+        //        trackballControls.dynamicDampingFactor=0.3;
+
+
+                var ambientLight = new THREE.AmbientLight(0x383838);
+                scene.add(ambientLight);
+
+                // add spotlight for the shadows
+                var spotLight = new THREE.SpotLight(0xffffff);
+                spotLight.position.set(300, 300, 300);
+                spotLight.intensity = 1;
+                scene.add(spotLight);
+
+                // 添加地面
+                method.addPlane();
 
                 // add the output of the renderer to the html element
                 lo.append(renderer.domElement);
 
                 // render the scene
-                method.updateRenderer();
+                method.render();
             },
 
             initStyle: function() {
@@ -125,7 +175,7 @@
             });
 
             // render the scene
-            method.updateRenderer();
+            method.render();
         };
 
         this.show = function() {
@@ -138,8 +188,13 @@
                 }
             });
 
-            method.updateRenderer();
+            method.render();
         };
+
+        this.LogCount = function () {
+            
+            console.log(scene.children.length);
+        },
 
         this.loadOBJ = function(url) {
 
@@ -158,11 +213,12 @@
                 });
 
                 mesh = loadedMesh;
-                // loadedMesh.scale.set(100, 100, 100);
+                loadedMesh.scale.set(500, 500, 500);
                 loadedMesh.rotation.x = -0.3;
                 scene.add(loadedMesh);
 
-                method.updateRenderer();
+                camera.updateProjectionMatrix();
+                method.render();
             });
 
         }

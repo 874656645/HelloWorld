@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="mainStyle.css">
     <script type="text/javascript" src="../libs/three.js"></script>
     <script type="text/javascript" src="../libs/OBJLoader.js"></script>
+    <script type="text/javascript" src="../libs/TrackballControls.js"></script>
     <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="PluginModel.js"></script>
 </head>
@@ -18,6 +19,8 @@
     <button id="btnHide">隐藏</button>
     <button id="btnShow">显示</button>
     <button id="btnLoadOBJ">加载OBJ</button>
+    <button id="btnTest">数量</button>
+    
 </body>
 
 <script type="text/javascript">
@@ -39,7 +42,12 @@
         });
 
         $("#btnLoadOBJ").click(function() {
-            a.loadOBJ('ttt.obj');
+            // a.loadOBJ('pinecone.obj');
+            a.loadOBJ('taduan.obj');            
+        });
+
+        $("#btnTest").click(function() {
+            a.LogCount();
         });
     });
 </script>
