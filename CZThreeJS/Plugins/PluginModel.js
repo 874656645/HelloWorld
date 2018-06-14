@@ -33,13 +33,13 @@
                 renderer.render(scene, camera);
             },
 
-            addAxes: function () {
+            addAxes: function() {
                 // show axes in the screen
                 var axes = new THREE.AxisHelper(20);
-                scene.add(axes);               
+                scene.add(axes);
             },
 
-            addPlane: function () {
+            addPlane: function() {
                 // create the ground plane
                 var planeGeometry = new THREE.PlaneGeometry(60, 20);
                 var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
@@ -53,10 +53,10 @@
                 plane.name = "MyPlane";
 
                 // add the plane to the scene
-                scene.add(plane);               
+                scene.add(plane);
             },
 
-            addCube: function () {
+            addCube: function() {
                 // create a cube
                 var cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
                 var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
@@ -69,10 +69,10 @@
                 cube.name = "MyCube";
 
                 // add the cube to the scene
-                scene.add(cube);               
+                scene.add(cube);
             },
 
-            addSphere: function () {
+            addSphere: function() {
                 // create a sphere
                 var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
                 var sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x7777ff, wireframe: true });
@@ -86,7 +86,7 @@
 
                 // add the sphere to the scene
                 scene.add(sphere);
-                
+
             },
 
             initScene: function() {
@@ -119,10 +119,10 @@
                 trackballControls.rotateSpeed = 1.0;
                 trackballControls.zoomSpeed = 1.0;
                 trackballControls.panSpeed = 1.0;
-        //        trackballControls.noZoom=false;
-        //        trackballControls.noPan=false;
+                //        trackballControls.noZoom=false;
+                //        trackballControls.noPan=false;
                 trackballControls.staticMoving = true;
-        //        trackballControls.dynamicDampingFactor=0.3;
+                //        trackballControls.dynamicDampingFactor=0.3;
 
 
                 var ambientLight = new THREE.AmbientLight(0x383838);
@@ -191,37 +191,37 @@
             method.render();
         };
 
-        this.LogCount = function () {
-            
-            console.log(scene.children.length);
-        },
+        this.LogCount = function() {
 
-        this.loadOBJ = function(url) {
+                console.log(scene.children.length);
+            },
 
-            var loader = new THREE.OBJLoader();
-            loader.load(url, function(loadedMesh) {
+            this.loadOBJ = function(url) {
 
-                var material = new THREE.MeshLambertMaterial({ color: 0x5C3A21 });
+                var loader = new THREE.OBJLoader();
+                loader.load(url, function(loadedMesh) {
 
-                // loadedMesh is a group of meshes. For
-                // each mesh set the material, and compute the information
-                // three.js needs for rendering.
-                loadedMesh.children.forEach(function(child) {
-                    child.material = material;
-                    child.geometry.computeFaceNormals();
-                    child.geometry.computeVertexNormals();
+                    var material = new THREE.MeshLambertMaterial({ color: 0x5C3A21 });
+
+                    // loadedMesh is a group of meshes. For
+                    // each mesh set the material, and compute the information
+                    // three.js needs for rendering.
+                    loadedMesh.children.forEach(function(child) {
+                        child.material = material;
+                        child.geometry.computeFaceNormals();
+                        child.geometry.computeVertexNormals();
+                    });
+
+                    mesh = loadedMesh;
+                    loadedMesh.scale.set(500, 500, 500);
+                    loadedMesh.rotation.x = -0.3;
+                    scene.add(loadedMesh);
+
+                    camera.updateProjectionMatrix();
+                    method.render();
                 });
 
-                mesh = loadedMesh;
-                loadedMesh.scale.set(500, 500, 500);
-                loadedMesh.rotation.x = -0.3;
-                scene.add(loadedMesh);
-
-                camera.updateProjectionMatrix();
-                method.render();
-            });
-
-        }
+            }
     }
 
     //可设置默认属性
