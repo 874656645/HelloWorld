@@ -1,21 +1,8 @@
 #include<windows.h>
-#include<iostream>
-#include<string>
-#include<fstream>
 
-using namespace std;
-
-string to_utf8(const wchar_t* buffer, int len)
+std::string to_utf8(const wchar_t* buffer, int len)
 {
-    int nChars = ::WideCharToMultiByte(
-        CP_UTF8, 
-        0, 
-        buffer, 
-        len, 
-        NULL, 
-        0, 
-        NULL, 
-        NULL);
+    int nChars = ::WideCharToMultiByte(CP_UTF8, 0, buffer, len, NULL, 0, NULL, NULL);
     
     if (nChars == 0) {
         return "";

@@ -97,7 +97,7 @@
                 scene = new THREE.Scene();
 
                 // create a camera, which defines where we're looking at.
-                camera = new THREE.PerspectiveCamera(45, lo.width() / lo.height(), 0.1, 1000);
+                camera = new THREE.PerspectiveCamera(45, lo.width() / lo.height(), 0.1, 10000);
                 // camera = new THREE.OrthographicCamera(lo.width() / -16, lo.height() / 16, lo.width() / 16, lo.height() / -16, -200, 500);
 
                 // create a render and set the size
