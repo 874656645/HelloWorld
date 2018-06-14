@@ -9,7 +9,7 @@
             "command": "g++",
             "args": [
                 "-g", 
-                "${workspaceFolder}/C++/Learning/binder.cpp",
+                "${workspaceFolder}/C++/Learning/WritingUTF8.cpp",
                 "-o",
                 "${file}.exe"
             ],

@@ -55,5 +55,6 @@ int main(int argc, char const *argv[])
 
     outfile.close();
 
-    return 0;
+    system("pause");
+    return 1;
 }

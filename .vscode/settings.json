@@ -45,7 +45,7 @@
       "functional": "cpp"
     },
     // Whether to run code in Integrated Terminal.
-  //"code-runner.runInTerminal": true,
+  "code-runner.runInTerminal": true,
     // Whether to ignore selection to always run entire file.
   "code-runner.ignoreSelection": true
 }
