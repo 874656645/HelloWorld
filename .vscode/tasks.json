@@ -9,9 +9,10 @@
             "command": "g++",
             "args": [
                 "-g", 
-                "${workspaceFolder}/C++/Learning/WritingUTF8.cpp",
+                "${workspaceFolder}/C++/GDAL-Learning/ReadShapeFile.cpp",
+                // "${workspaceFolder}/C++/Learning/Test.cpp",                
                 "-o",
-                "${file}.exe"
+                "${workspaceFolder}/Build/${fileBasenameNoExtension}.exe"
             ],
             "problemMatcher":{
                 "owner": "cpp",

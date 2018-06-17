@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
     // strncat(buf, "123456789abc", 8);
     // cout << buf << endl;
 
-    // vector<int> myVet(SIZE_NUM);
+    vector<int> myVet(SIZE_NUM);
     // myVet[20] = 50;
     // vector<int>::iterator res = find(myVet.begin(), myVet.end(), 50);
     // if (res != myVet.end()) {
@@ -60,8 +60,8 @@ int main(int argc, char const *argv[])
     // random_shuffle(myVet.begin(), myVet.end());
     // Display(myVet, "after shuffle");
 
-    // vector<double> dMyVet = {1.1, 2.2, 3.3, 4.4, 5.5};
-    // Display(dMyVet, "double Vector");
+    vector<double> dMyVet = {1.1, 2.2, 3.3, 4.4, 5.5};
+    Display(dMyVet, "double Vector");
 
     /* list */
     // list<int> iList;
@@ -77,11 +77,11 @@ int main(int argc, char const *argv[])
     // int k = distance(p, p1);
     // cout << "distance = " << k << endl;
 
-    long int result = 1;
-    for(int i = 1; i < 11; i++){
-        result *= i;
-    }
-    cout << result;
+    // long int result = 1;
+    // for(int i = 1; i < 11; i++){
+    //     result *= i;
+    // }
+    // cout << result;
 
 
     system("pause");

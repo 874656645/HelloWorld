@@ -1,0 +1,27 @@
+{
+    "configurations": [{
+        "name": "Win32",
+        "browse": {
+            "path": [
+                "D:/MinGW/lib/gcc/mingw32/6.3.0/include/",
+                "D:/OpenSourceProject/release-1911-x64-gdal-2-3-0-mapserver-7-0-7/include/",
+                "${workspaceFolder}"
+            ],
+            "limitSymbolsToIncludedHeaders": true
+        },
+        "includePath": [
+            "D:/MinGW/lib/gcc/mingw32/6.3.0/include/",
+            "D:/OpenSourceProject/release-1911-x64-gdal-2-3-0-mapserver-7-0-7/include/",
+            "${workspaceFolder}"
+        ],
+        "defines": [
+            "_DEBUG",
+            "UNICODE",
+            "_UNICODE"
+        ],
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "msvc-x64"
+    }],
+    "version": 4
+}
